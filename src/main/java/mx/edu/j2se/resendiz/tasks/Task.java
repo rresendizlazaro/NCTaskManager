@@ -50,30 +50,55 @@ public class Task {
 
     //Reading and changing execution time for NO REPETITIVE TASKS
     public int getTime(){
-        return this.time;
+        if (!repeat){
+            return this.time;
+        }else{
+            return this.start;
+        }
     }
 
     public void setTime(int time){
-        this.time = time;
+        if (!repeat){
+            this.time = time;
+        }else{
+            this.repeat = false;
+        }
+
     }
 
     //Reading and changing execution time for repetitive tasks
     public int getStartTime(){
-        return this.start;
+        if(repeat){
+            return this.start;
+        }else{
+            return  this.time;
+        }
     }
 
     public int getSEndTime(){
-        return this.end;
+        if(repeat){
+            return this.end;
+        }else{
+            return this.time;
+        }
     }
 
     public int getRepeatInterval(){
-        return this.interval;
+        if(repeat){
+            return this.interval;
+        }else{
+            return 0;
+        }
     }
 
     public void setTime(int start, int end, int interval){
-        this.start = start;
-        this.end = end;
-        this.interval = interval;
+        if(repeat){
+            this.start = start;
+            this.end = end;
+            this.interval = interval;
+        }else {
+            this.repeat = true;
+        }
     }
 
     //Check task for repeatability
