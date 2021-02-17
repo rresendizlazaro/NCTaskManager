@@ -8,7 +8,7 @@ public class Task {
     private int end;
     private int interval;
     private boolean active;
-    private  boolean repeat;
+    private boolean repeat;
 
     //Constructors
     //Inactive task => No repeating
@@ -50,7 +50,7 @@ public class Task {
 
     //Reading and changing execution time for NO REPETITIVE TASKS
     public int getTime(){
-        if (!repeat){
+        if (!this.repeat){
             return this.time;
         }else{
             return this.start;
@@ -58,7 +58,7 @@ public class Task {
     }
 
     public void setTime(int time){
-        if (!repeat){
+        if (!this.repeat){
             this.time = time;
         }else{
             this.repeat = false;
@@ -68,7 +68,7 @@ public class Task {
 
     //Reading and changing execution time for repetitive tasks
     public int getStartTime(){
-        if(repeat){
+        if(this.repeat){
             return this.start;
         }else{
             return  this.time;
@@ -76,7 +76,7 @@ public class Task {
     }
 
     public int getSEndTime(){
-        if(repeat){
+        if(this.repeat){
             return this.end;
         }else{
             return this.time;
@@ -84,7 +84,7 @@ public class Task {
     }
 
     public int getRepeatInterval(){
-        if(repeat){
+        if(this.repeat){
             return this.interval;
         }else{
             return 0;
@@ -92,7 +92,7 @@ public class Task {
     }
 
     public void setTime(int start, int end, int interval){
-        if(repeat){
+        if(this.repeat){
             this.start = start;
             this.end = end;
             this.interval = interval;
@@ -106,4 +106,23 @@ public class Task {
         return this.repeat;
     }
 
+    //Checking the next task execution
+    public int nextTimeAfter(int current){
+        int nextTime;
+        if(this.repeat){
+            nextTime = this.start - current;
+            if(nextTime == 0 && interval == 0){
+                return -1;
+            }else{
+                return nextTime;
+            }
+        }else{
+            nextTime = this.time - current;
+            if(nextTime == 0){
+                return -1;
+            }else{
+                return nextTime;
+            }
+        }
+    }
 }
