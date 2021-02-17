@@ -15,6 +15,7 @@ public class Task {
     public Task (String title, int time){
         this.title = title;
         this.time = time;
+        this.active = false;
         this.repeat = false;
     }
 
@@ -24,6 +25,7 @@ public class Task {
         this.start = start;
         this.end = end;
         this.interval = interval;
+        this.active = false;
         this.repeat = true;
     }
 
