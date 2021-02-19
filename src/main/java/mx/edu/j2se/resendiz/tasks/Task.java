@@ -62,6 +62,10 @@ public class Task {
             this.time = time;
         }else{
             this.repeat = false;
+            this.time = time;
+            this.start = 0;
+            this.end = 0;
+            this.interval = 0;
         }
 
     }
@@ -97,6 +101,10 @@ public class Task {
             this.end = end;
             this.interval = interval;
         }else {
+            this.start = start;
+            this.end = end;
+            this.interval = interval;
+            this.time = 0;
             this.repeat = true;
         }
     }
@@ -114,7 +122,7 @@ public class Task {
             if(nextTime <= 0 && interval == 0){
                 return -1;
             }else{
-                return nextTime;
+                return (int) Math.sqrt(Math.pow(nextTime, 2));
             }
         }else{
             nextTime = this.time - current;
