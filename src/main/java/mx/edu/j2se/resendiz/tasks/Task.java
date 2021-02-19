@@ -75,7 +75,7 @@ public class Task {
         }
     }
 
-    public int getSEndTime(){
+    public int getEndTime(){
         if(this.repeat){
             return this.end;
         }else{
@@ -110,15 +110,15 @@ public class Task {
     public int nextTimeAfter(int current){
         int nextTime;
         if(this.repeat){
-            nextTime = this.start - current;
-            if(nextTime == 0 && interval == 0){
+            nextTime = this.end - current;
+            if(nextTime <= 0 && interval == 0){
                 return -1;
             }else{
                 return nextTime;
             }
         }else{
             nextTime = this.time - current;
-            if(nextTime == 0){
+            if(nextTime <= 0){
                 return -1;
             }else{
                 return nextTime;
