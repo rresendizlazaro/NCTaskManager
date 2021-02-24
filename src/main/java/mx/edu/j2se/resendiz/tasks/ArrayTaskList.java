@@ -1,6 +1,4 @@
-package mx.edu.j2se.resendiz.tasks.tests;
-
-import mx.edu.j2se.resendiz.tasks.Task;
+package mx.edu.j2se.resendiz.tasks;
 
 public class ArrayTaskList {
     //Attributes
