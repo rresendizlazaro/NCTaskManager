@@ -116,20 +116,17 @@ public class Task {
 
     //Checking the next task execution
     public int nextTimeAfter(int current){
-        int nextTime;
         if(this.repeat){
-            nextTime = this.end - current;
-            if(nextTime <= 0 && interval == 0){
+            if(interval == 0){
                 return -1;
             }else{
-                return (int) Math.sqrt(Math.pow(nextTime, 2));
+                return this.start;
             }
         }else{
-            nextTime = this.time - current;
-            if(nextTime <= 0){
+            if(current >= this.time){
                 return -1;
             }else{
-                return nextTime;
+                return this.time;
             }
         }
     }
