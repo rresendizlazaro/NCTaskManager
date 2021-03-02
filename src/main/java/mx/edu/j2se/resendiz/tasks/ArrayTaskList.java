@@ -7,7 +7,7 @@ public class ArrayTaskList {
 
     //Constructor
     public ArrayTaskList(){
-
+        this.arrayTaskList = new Task[0];
     }
 
     //Methods
@@ -17,8 +17,8 @@ public class ArrayTaskList {
 
     public boolean remove(Task task){
         for (int i = 0; i <= this.taskCounter; i++){
-            if (arrayTaskList[i].equals(task)){
-                arrayTaskList[i] = null;
+            if (this.arrayTaskList[i].equals(task)){
+                this.arrayTaskList[i] = null;
                 break;
             }
         }
@@ -34,7 +34,7 @@ public class ArrayTaskList {
     }
 
     public ArrayTaskList incoming(int from, int to){
-        for (int i = 0; i <= this.arrayTaskList.length; i++){
+        for (int i = 0; i <= this.taskCounter; i++){
 
         }
         return null;
