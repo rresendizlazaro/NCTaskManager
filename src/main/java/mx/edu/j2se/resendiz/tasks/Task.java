@@ -117,7 +117,7 @@ public class Task {
     //Checking the next task execution
     public int nextTimeAfter(int current){
         if(this.repeat){
-            if(interval == 0){
+            if(current >= this.start && interval == 0){
                 return -1;
             }else{
                 return this.start;

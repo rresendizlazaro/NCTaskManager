@@ -1,24 +1,22 @@
 package mx.edu.j2se.resendiz.tasks;
 
 public class ArrayTaskList {
-    //Attributes
-    private int taskNumber;
-    public static int taskCounter;
-    Task[] arrayTaskList;
+    //Attribute
+    public Task arrayTaskList[];
+    private int taskCounter;
 
     //Constructor
     public ArrayTaskList(){
-        this.taskNumber = ++ArrayTaskList.taskCounter;
-        this.arrayTaskList = new Task[taskNumber];
+
     }
 
     //Methods
     public void add(Task task){
-        this.arrayTaskList[this.taskNumber-1] = task;
+        this.arrayTaskList[this.taskCounter++] = task;
     }
 
     public boolean remove(Task task){
-        for (int i = 0; i <= this.arrayTaskList.length; i++){
+        for (int i = 0; i <= this.taskCounter; i++){
             if (arrayTaskList[i].equals(task)){
                 arrayTaskList[i] = null;
                 break;
@@ -28,7 +26,7 @@ public class ArrayTaskList {
     }
 
     public int size(){
-        return this.arrayTaskList.length;
+        return this.taskCounter;
     }
 
     public Task getTask(int index){
