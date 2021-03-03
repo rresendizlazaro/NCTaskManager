@@ -7,7 +7,7 @@ public class LinkedTaskList {
 
     //Constructor
     public LinkedTaskList(){
-        this.arrayTaskList = new Task[1+taskCounter];
+        this.arrayTaskList = new Task[100];
     }
 
     //Methods
