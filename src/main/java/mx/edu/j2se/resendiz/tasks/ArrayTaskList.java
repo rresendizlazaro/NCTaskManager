@@ -7,7 +7,7 @@ public class ArrayTaskList {
 
     //Constructor
     public ArrayTaskList(){
-        this.arrayTaskList = new Task[1+taskCounter];
+        this.arrayTaskList = new Task[100];
     }
 
     //Methods
