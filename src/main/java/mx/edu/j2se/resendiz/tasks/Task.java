@@ -13,6 +13,8 @@ public class Task {
     //Constructors
     //Inactive task => No repeating
     public Task (String title, int time){
+        if (time < 0)
+            throw new IllegalArgumentException("Time can't be negative");
         this.title = title;
         this.time = time;
         this.active = false;
@@ -21,6 +23,8 @@ public class Task {
 
     //Inactive task => Time range
     public Task (String title, int start, int end, int interval){
+        if (start < 0 || end < 0 || interval < 0)
+            throw new IllegalArgumentException("Start, end and interval can't be negative or equal");
         this.title = title;
         this.start = start;
         this.end = end;

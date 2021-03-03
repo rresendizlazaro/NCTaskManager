@@ -1,12 +1,12 @@
 package mx.edu.j2se.resendiz.tasks;
 
-public class ArrayTaskList {
+public class LinkedTaskList {
     //Attribute
     public Task arrayTaskList[];
     private int taskCounter;
 
     //Constructor
-    public ArrayTaskList(){
+    public LinkedTaskList(){
         this.arrayTaskList = new Task[1+taskCounter];
     }
 
