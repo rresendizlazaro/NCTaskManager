@@ -44,7 +44,7 @@ public class ArrayTaskList {
         Task temporal;
         for (int i = 0; i <= this.taskCounter; i++){
             temporal = getTask(i);
-            if(temporal.getStartTime() >= from && temporal.getEndTime() <= to){
+            if(temporal.getStartTime() >= from && temporal.getEndTime() <= to && temporal.isActive()){
                 inc.add(temporal);
             }
         }
