@@ -40,9 +40,14 @@ public class ArrayTaskList {
     }
 
     public ArrayTaskList incoming(int from, int to){
+        ArrayTaskList inc = new ArrayTaskList();
+        Task temporal;
         for (int i = 0; i <= this.taskCounter; i++){
-
+            temporal = getTask(i);
+            if(temporal.getStartTime() >= from && temporal.getEndTime() <= to){
+                inc.add(temporal);
+            }
         }
-        return null;
+        return inc;
     }
 }
