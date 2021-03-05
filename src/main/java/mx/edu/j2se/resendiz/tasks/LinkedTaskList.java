@@ -24,24 +24,29 @@ public class LinkedTaskList {
     //Methods
     public void add(Task task){
         //Exception
-        if(task == null)
-            throw new NullPointerException();
-        //Create a new node
-        Node newNode = new Node(task);
+        try{
+            if(task == null) {
+                throw new NullPointerException();
+            }else {
+                //Create a new node
+                Node newNode = new Node(task);
 
-        //Checks if the list is empty
-        if(start == null) {
-            //If list is empty, start and end will be the new node
-            start = newNode;
-            end = newNode;
-            this.nodeCounter++;
-        }
-        else {
-            //newNode will be added after end such that end's next will point to newNode
-            end.next = newNode;
-            //newNode will become new end of the list
-            end = newNode;
-            this.nodeCounter++;
+                //Checks if the list is empty
+                if (start == null) {
+                    //If list is empty, start and end will be the new node
+                    start = newNode;
+                    end = newNode;
+                    this.nodeCounter++;
+                } else {
+                    //newNode will be added after end such that end's next will point to newNode
+                    end.next = newNode;
+                    //newNode will become new end of the list
+                    end = newNode;
+                    this.nodeCounter++;
+                }
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
@@ -91,16 +96,11 @@ public class LinkedTaskList {
             temporal = temporal.next;
         }
 
-        //If the task was not presented in the linked list
-        if (temporal == null)
-            throw new IndexOutOfBoundsException();
-
         //Sending the task
         return temporal.task;
     }
 
     public ArrayTaskList incoming(int from, int to){
-
         return null;
     }
 }

@@ -12,10 +12,16 @@ public class ArrayTaskList {
 
     //Methods
     public void add(Task task){
-        if(task == null)
-            throw new NullPointerException();
-        if(arrayTaskList[arrayTaskList.length-1]!=null)  {
-            this.arrayTaskList[this.taskCounter++] = task;
+        try {
+            if (task == null) {
+                throw new NullPointerException();
+            }else {
+                if (arrayTaskList[arrayTaskList.length - 1] != null) {
+                    this.arrayTaskList[this.taskCounter++] = task;
+                }
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
@@ -34,9 +40,17 @@ public class ArrayTaskList {
     }
 
     public Task getTask(int index){
-        if(index < 0 || index >= size())
-            throw new IndexOutOfBoundsException();
-        return this.arrayTaskList[index];
+        Task returnedTask = new Task("ok", 0);
+        try {
+            if (index < 0 || index >= size()) {
+                throw new IndexOutOfBoundsException();
+            }else {
+                returnedTask = this.arrayTaskList[index];
+            }
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return returnedTask;
     }
 
     public ArrayTaskList incoming(int from, int to){
