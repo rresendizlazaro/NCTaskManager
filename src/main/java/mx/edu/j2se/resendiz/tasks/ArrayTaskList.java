@@ -12,16 +12,12 @@ public class ArrayTaskList extends AbstractTaskList{
 
     //Methods
     public void add(Task task){
-        try {
-            if (task == null) {
-                throw new NullPointerException();
-            }else {
-                if (arrayTaskList[arrayTaskList.length - 1] != null) {
-                    this.arrayTaskList[this.taskCounter++] = task;
-                }
+        if (task == null) {
+            throw new NullPointerException();
+        }else {
+            if (arrayTaskList[arrayTaskList.length - 1] != null) {
+                this.arrayTaskList[this.taskCounter++] = task;
             }
-        }catch (Exception e){
-            System.out.println(e.getMessage());
         }
     }
 
@@ -41,16 +37,11 @@ public class ArrayTaskList extends AbstractTaskList{
 
     public Task getTask(int index){
         Task returnedTask = new Task("ok", 0);
-        try {
             if (index < 0 || index >= size()) {
                 throw new IndexOutOfBoundsException();
             }else {
-                returnedTask = this.arrayTaskList[index];
+                return this.arrayTaskList[index];
             }
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-        return returnedTask;
     }
 
     public ArrayTaskList incoming(int from, int to){

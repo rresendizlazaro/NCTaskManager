@@ -13,36 +13,27 @@ public class Task {
     //Constructors
     //Inactive task => No repeating
     public Task (String title, int time){
-        try{
-            if (time < 0) {
-                throw new IllegalArgumentException("Time can't be negative");
-            }else{
-                this.title = title;
-                this.time = time;
-                this.active = false;
-                this.repeat = false;
-            }
-        }catch(Exception e){
-            System.out.println(e.getMessage());
+        if (time < 0) {
+            throw new IllegalArgumentException("Time can't be negative");
+        }else{
+            this.title = title;
+            this.time = time;
+            this.active = false;
+            this.repeat = false;
         }
-
     }
 
     //Inactive task => Time range
     public Task (String title, int start, int end, int interval){
-        try{
-            if (start < 0 || end < 0 || interval < 0) {
-                throw new IllegalArgumentException("Start, end and interval can't be negative or equal");
-            }else {
-                this.title = title;
-                this.start = start;
-                this.end = end;
-                this.interval = interval;
-                this.active = false;
-                this.repeat = true;
-            }
-        }catch (Exception e) {
-            System.out.println(e.getMessage());
+        if (start < 0 || end < 0 || interval < 0) {
+            throw new IllegalArgumentException("Start, end and interval can't be negative or equal");
+        }else {
+            this.title = title;
+            this.start = start;
+            this.end = end;
+            this.interval = interval;
+            this.active = false;
+            this.repeat = true;
         }
     }
 

@@ -24,29 +24,25 @@ public class LinkedTaskList extends AbstractTaskList{
     //Methods
     public void add(Task task){
         //Exception
-        try{
-            if(task == null) {
-                throw new NullPointerException();
-            }else {
-                //Create a new node
-                Node newNode = new Node(task);
+        if(task == null) {
+            throw new NullPointerException();
+        }else {
+            //Create a new node
+            Node newNode = new Node(task);
 
-                //Checks if the list is empty
-                if (start == null) {
-                    //If list is empty, start and end will be the new node
-                    start = newNode;
-                    end = newNode;
-                    this.nodeCounter++;
-                } else {
-                    //newNode will be added after end such that end's next will point to newNode
-                    end.next = newNode;
-                    //newNode will become new end of the list
-                    end = newNode;
-                    this.nodeCounter++;
-                }
+            //Checks if the list is empty
+            if (start == null) {
+                //If list is empty, start and end will be the new node
+                start = newNode;
+                end = newNode;
+                this.nodeCounter++;
+            } else {
+                //newNode will be added after end such that end's next will point to newNode
+                end.next = newNode;
+                //newNode will become new end of the list
+                end = newNode;
+                this.nodeCounter++;
             }
-        }catch (Exception e){
-            System.out.println(e.getMessage());
         }
     }
 
@@ -81,23 +77,18 @@ public class LinkedTaskList extends AbstractTaskList{
         return this.nodeCounter;
     }
 
-    public Task getTask(Task taskD){
-        //Similar to remove class
-        //Start node
-        Node temporal = start;
-
-        //If start node has the task to be returned
-        if (temporal != null && temporal.task == taskD) {
-            return temporal.task;
+    public Task getTask(int index){
+        if (index < 0 || index >= size()) {
+            throw new IndexOutOfBoundsException();
         }
-
-        //Searching the node
-        while (temporal != null && temporal.task != taskD){
-            temporal = temporal.next;
+        if (index <= size()) {
+            Node current = start;
+            for (int i = 0; i < index; i++) {
+                current = current.next;
+            }
+            return current.task;
         }
-
-        //Sending the task
-        return temporal.task;
+        return end.task;
     }
 
     public ArrayTaskList incoming(int from, int to){
