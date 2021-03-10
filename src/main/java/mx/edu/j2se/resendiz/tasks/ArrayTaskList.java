@@ -1,6 +1,6 @@
 package mx.edu.j2se.resendiz.tasks;
 
-public class ArrayTaskList {
+public class ArrayTaskList extends AbstractTaskList{
     //Attribute
     public Task arrayTaskList[];
     private int taskCounter;

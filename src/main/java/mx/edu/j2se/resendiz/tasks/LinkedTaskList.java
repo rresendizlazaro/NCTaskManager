@@ -1,6 +1,6 @@
 package mx.edu.j2se.resendiz.tasks;
 
-public class LinkedTaskList {
+public class LinkedTaskList extends AbstractTaskList{
     //Creating a class that represents the linkedList's nodes
     //#####################Node Class#####################
     class Node{
