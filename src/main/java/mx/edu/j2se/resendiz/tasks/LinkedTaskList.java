@@ -1,6 +1,9 @@
 package mx.edu.j2se.resendiz.tasks;
 
-public class LinkedTaskList extends AbstractTaskList{
+import java.util.Iterator;
+import java.util.Objects;
+
+public class LinkedTaskList extends AbstractTaskList implements Iterable<Task>{
     //Creating a class that represents the linkedList's nodes
     //#####################Node Class#####################
     class Node{
@@ -93,5 +96,33 @@ public class LinkedTaskList extends AbstractTaskList{
 
     public ArrayTaskList incoming(int from, int to){
         return null;
+    }
+
+    @Override
+    public Iterator<Task> iterator() {
+        return null;
+    }
+
+    //Overriding Methods equals, hashCode and toString
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LinkedTaskList tasks = (LinkedTaskList) o;
+        return nodeCounter == tasks.nodeCounter && Objects.equals(start, tasks.start) && Objects.equals(end, tasks.end);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(start, end, nodeCounter);
+    }
+
+    @Override
+    public String toString() {
+        return "LinkedTaskList{" +
+                "start=" + start +
+                ", end=" + end +
+                ", nodeCounter=" + nodeCounter +
+                '}';
     }
 }

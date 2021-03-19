@@ -1,6 +1,6 @@
 package mx.edu.j2se.resendiz.tasks;
 
-public abstract class AbstractTaskList {
+public abstract class AbstractTaskList implements Iterable<Task>{
     public abstract void add(Task task);
 
     public abstract boolean remove(Task task);

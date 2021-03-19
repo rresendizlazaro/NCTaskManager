@@ -1,6 +1,9 @@
 package mx.edu.j2se.resendiz.tasks;
 
-public class ArrayTaskList extends AbstractTaskList{
+import java.util.Arrays;
+import java.util.Iterator;
+
+public class ArrayTaskList extends AbstractTaskList implements Iterable<Task>{
     //Attribute
     public Task arrayTaskList[];
     private int taskCounter;
@@ -54,5 +57,31 @@ public class ArrayTaskList extends AbstractTaskList{
             }
         }
         return inc;
+    }
+
+    //Overriding Methods equals, hashCode and toString
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ArrayTaskList tasks = (ArrayTaskList) o;
+        return Arrays.equals(arrayTaskList, tasks.arrayTaskList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(arrayTaskList);
+    }
+
+    @Override
+    public String toString() {
+        return "ArrayTaskList{" +
+                "arrayTaskList=" + Arrays.toString(arrayTaskList) +
+                '}';
+    }
+
+    @Override
+    public Iterator<Task> iterator() {
+        return null;
     }
 }

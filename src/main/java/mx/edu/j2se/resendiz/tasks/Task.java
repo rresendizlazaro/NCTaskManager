@@ -1,5 +1,7 @@
 package mx.edu.j2se.resendiz.tasks;
 
+import java.util.Objects;
+
 public class Task {
     //Attributes
     private String title;
@@ -137,5 +139,32 @@ public class Task {
                 return this.time;
             }
         }
+    }
+
+    //Overriding Methods equals, hashCode and toString
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return time == task.time && start == task.start && end == task.end && interval == task.interval && active == task.active && repeat == task.repeat && Objects.equals(title, task.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, time, start, end, interval, active, repeat);
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "title='" + title + '\'' +
+                ", time=" + time +
+                ", start=" + start +
+                ", end=" + end +
+                ", interval=" + interval +
+                ", active=" + active +
+                ", repeat=" + repeat +
+                '}';
     }
 }
