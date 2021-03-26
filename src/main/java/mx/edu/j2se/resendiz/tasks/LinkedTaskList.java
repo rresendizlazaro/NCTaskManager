@@ -3,7 +3,7 @@ package mx.edu.j2se.resendiz.tasks;
 import java.util.Iterator;
 import java.util.Objects;
 
-public class LinkedTaskList extends AbstractTaskList implements Iterable<Task>{
+public class LinkedTaskList extends AbstractTaskList implements Iterable<Task>, Cloneable{
     //Creating a class that represents the linkedList's nodes
     //#####################Node Class#####################
     class Node{
@@ -100,7 +100,42 @@ public class LinkedTaskList extends AbstractTaskList implements Iterable<Task>{
 
     @Override
     public Iterator<Task> iterator() {
-        return null;
+        Iterator<Task> it = new Iterator<Task>() {
+            //Node to walk the LTL
+            Node currentNode = start;
+            //Nodes to keep previous nodes
+            Node node1 = null;
+            Node node2 = null;
+
+            //Asking for a next node
+            @Override
+            public boolean hasNext() {
+                return currentNode != null;
+            }
+
+            //Jumping to the next space after the node
+            @Override
+            public Task next() {
+                //Assigning the current task to task1
+                Task task1 = currentNode.task;
+                //Carry nodes
+                node2 = node1;
+                node1 = currentNode;
+                currentNode = currentNode.next;
+                return task1;
+            }
+
+            @Override
+            public void remove() {
+                if (node2 == null) {
+                    start = currentNode;
+                } else {
+                    node2 = currentNode;
+                }
+                nodeCounter--;
+            }
+        };
+        return it;
     }
 
     //Overriding Methods equals, hashCode and toString
@@ -124,5 +159,15 @@ public class LinkedTaskList extends AbstractTaskList implements Iterable<Task>{
                 ", end=" + end +
                 ", nodeCounter=" + nodeCounter +
                 '}';
+    }
+
+    //Clone method
+    public LinkedTaskList clone() throws CloneNotSupportedException {
+            LinkedTaskList link = (LinkedTaskList) super.clone();
+            link.nodeCounter = 0;
+            for (int i = 0; i < nodeCounter; i++) {
+                link.add(getTask(i));
+            }
+            return link;
     }
 }

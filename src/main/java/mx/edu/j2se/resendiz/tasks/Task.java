@@ -2,7 +2,7 @@ package mx.edu.j2se.resendiz.tasks;
 
 import java.util.Objects;
 
-public class Task {
+public class Task implements Cloneable{
     //Attributes
     private String title;
     private int time;
@@ -166,5 +166,12 @@ public class Task {
                 ", active=" + active +
                 ", repeat=" + repeat +
                 '}';
+    }
+
+    //Clone method
+    @Override
+    public Task clone() throws CloneNotSupportedException {
+        //Returns an object Task
+        return (Task) super.clone();
     }
 }

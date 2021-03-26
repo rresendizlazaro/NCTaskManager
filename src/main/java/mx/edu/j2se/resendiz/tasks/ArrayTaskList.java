@@ -3,9 +3,9 @@ package mx.edu.j2se.resendiz.tasks;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class ArrayTaskList extends AbstractTaskList implements Iterable<Task>{
+public class ArrayTaskList extends AbstractTaskList implements Iterable<Task>, Cloneable{
     //Attribute
-    public Task arrayTaskList[];
+    private Task arrayTaskList[];
     private int taskCounter;
 
     //Constructor
@@ -80,8 +80,32 @@ public class ArrayTaskList extends AbstractTaskList implements Iterable<Task>{
                 '}';
     }
 
+    //Iterator
     @Override
     public Iterator<Task> iterator() {
-        return null;
+        //Like the for cycle but in this case you can read the array and modify it's content
+        Iterator<Task> iterate = new Iterator<Task>() {
+            //Counter
+            private int counter = 0;
+            //Overriding methods of the iterator
+            //this asks if exists a next task in the array
+            @Override
+            public boolean hasNext() {
+                //Compares the actual item to the size of the array
+                return counter < size();
+            }
+
+            //It jumps to the next space before the task
+            @Override
+            public Task next() {
+                return getTask(counter++);
+            }
+        };
+        return iterate;
+    }
+
+    //Clone method
+    public ArrayTaskList clone() throws CloneNotSupportedException{
+            return (ArrayTaskList) super.clone();
     }
 }
