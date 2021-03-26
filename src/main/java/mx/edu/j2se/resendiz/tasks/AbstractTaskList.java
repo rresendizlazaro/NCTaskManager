@@ -13,11 +13,11 @@ public abstract class AbstractTaskList implements Iterable<Task>{
 
     public final ArrayTaskList incoming(int from, int to){
         if (this.getClass().equals(LinkedTaskList.class)) {
-            LinkedTaskList task1 = new LinkedTaskList();
-            //return task1;
+            LinkedTaskList taskL = new LinkedTaskList();
+            //return taskL;
         } else if (this.getClass().equals(ArrayTaskList.class)) {
-            ArrayTaskList task2 = new ArrayTaskList();
-            return task2;
+            ArrayTaskList taskA = new ArrayTaskList();
+            return taskA;
         }
         return null;
     }
