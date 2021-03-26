@@ -2,6 +2,7 @@ package mx.edu.j2se.resendiz.tasks;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.stream.Stream;
 
 public class ArrayTaskList extends AbstractTaskList implements Iterable<Task>, Cloneable{
     //Attribute
@@ -45,18 +46,6 @@ public class ArrayTaskList extends AbstractTaskList implements Iterable<Task>, C
             }else {
                 return this.arrayTaskList[index];
             }
-    }
-
-    public ArrayTaskList incoming(int from, int to){
-        ArrayTaskList inc = new ArrayTaskList();
-        Task temporal;
-        for (int i = 0; i <= this.taskCounter; i++){
-            temporal = getTask(i);
-            if(temporal.getStartTime() >= from && temporal.getEndTime() <= to && temporal.isActive()){
-                inc.add(temporal);
-            }
-        }
-        return inc;
     }
 
     //Overriding Methods equals, hashCode and toString
@@ -107,5 +96,11 @@ public class ArrayTaskList extends AbstractTaskList implements Iterable<Task>, C
     //Clone method
     public ArrayTaskList clone() throws CloneNotSupportedException{
             return (ArrayTaskList) super.clone();
+    }
+
+    //Overriding stream method
+    @Override
+    public Stream<Task> getStreams() {
+        return Stream.of(this.arrayTaskList);
     }
 }

@@ -2,6 +2,7 @@ package mx.edu.j2se.resendiz.tasks;
 
 import java.util.Iterator;
 import java.util.Objects;
+import  java.util.stream.Stream;
 
 public class LinkedTaskList extends AbstractTaskList implements Iterable<Task>, Cloneable{
     //Creating a class that represents the linkedList's nodes
@@ -94,10 +95,6 @@ public class LinkedTaskList extends AbstractTaskList implements Iterable<Task>, 
         return end.task;
     }
 
-    public ArrayTaskList incoming(int from, int to){
-        return null;
-    }
-
     @Override
     public Iterator<Task> iterator() {
         Iterator<Task> it = new Iterator<Task>() {
@@ -169,5 +166,15 @@ public class LinkedTaskList extends AbstractTaskList implements Iterable<Task>, 
                 link.add(getTask(i));
             }
             return link;
+    }
+
+    //Overriding stream method
+    @Override
+    public Stream<Task> getStreams() {
+        ArrayTaskList list = new ArrayTaskList();
+        for (int i = 0; i < size(); i++) {
+            list.add(getTask(i));
+        }
+        return list.getStreams();
     }
 }
