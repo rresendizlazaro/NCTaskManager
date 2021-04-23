@@ -6,41 +6,45 @@ import java.util.stream.Stream;
 
 public class ArrayTaskList extends AbstractTaskList implements Iterable<Task>, Cloneable{
     //Attribute
-    private Task arrayTaskList[];
-    private int taskCounter;
+    private Task[] arrayTaskList = new Task[0];
 
     //Constructor
-    public ArrayTaskList(){
-        this.arrayTaskList = new Task[100];
-    }
+    public ArrayTaskList(){}
 
     //Methods
     public void add(Task task){
         if (task == null) {
             throw new NullPointerException();
         }else {
-            if (arrayTaskList[arrayTaskList.length - 1] != null) {
-                this.arrayTaskList[this.taskCounter++] = task;
+            //Creating a new array to change the index of the actual array
+            //But this array is a copy of the prev
+            this.arrayTaskList = Arrays.copyOf(this.arrayTaskList, this.arrayTaskList.length+1);
+            for (int i = 0; i < this.arrayTaskList.length; i++){
+                if(this.arrayTaskList[i] == null){
+                    this.arrayTaskList[i] = task;
+                }
             }
         }
     }
 
     public boolean remove(Task task){
-        for (int i = 0; i <= this.taskCounter; i++){
-            if (this.arrayTaskList[i].equals(task)){
-                this.arrayTaskList[i] = null;
-                break;
+        for (int i = 0; i < this.arrayTaskList.length; i++){
+            //Iterating till the task desired
+            if (task.hashCode() == this.arrayTaskList[i].hashCode()){
+                //Copy of an array taking a new one from an specific index
+                System.arraycopy(this.arrayTaskList, i++, this.arrayTaskList, i, this.arrayTaskList.length -1 -i);
+                //Creating a new array with the correct length
+                this.arrayTaskList = Arrays.copyOf(this.arrayTaskList, this.arrayTaskList.length - 1);
             }
         }
         return true;
     }
 
     public int size(){
-        return this.taskCounter;
+        return this.arrayTaskList.length;
     }
 
     public Task getTask(int index){
-        Task returnedTask = new Task("ok", 0);
             if (index < 0 || index >= size()) {
                 throw new IndexOutOfBoundsException();
             }else {
