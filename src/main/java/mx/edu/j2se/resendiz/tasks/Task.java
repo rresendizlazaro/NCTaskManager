@@ -1,21 +1,27 @@
 package mx.edu.j2se.resendiz.tasks;
 
 import java.util.Objects;
+import java.time.*;
 
 public class Task implements Cloneable{
     //Attributes
     private String title;
-    private int time;
-    private int start;
-    private int end;
+    //Instead an integer
+    //private int time;
+    private LocalDateTime time;
+    //Change to a date format
+    //private int start;
+    //private int end;
+    private LocalDateTime start;
+    private LocalDateTime end;
     private int interval;
     private boolean active;
     private boolean repeat;
 
     //Constructors
     //Inactive task => No repeating
-    public Task (String title, int time){
-        if (time < 0) {
+    public Task (String title, LocalDateTime time){
+        if (time == null) {
             throw new IllegalArgumentException("Time can't be negative");
         }else{
             this.title = title;
@@ -26,8 +32,8 @@ public class Task implements Cloneable{
     }
 
     //Inactive task => Time range
-    public Task (String title, int start, int end, int interval){
-        if (start < 0 || end < 0 || interval < 0) {
+    public Task (String title, LocalDateTime start, LocalDateTime end, int interval){
+        if (start == null || end == null || interval < 0) {
             throw new IllegalArgumentException("Start, end and interval can't be negative or equal");
         }else {
             this.title = title;
@@ -59,7 +65,7 @@ public class Task implements Cloneable{
     }
 
     //Reading and changing execution time for NO REPETITIVE TASKS
-    public int getTime(){
+    public LocalDateTime getTime(){
         if (!this.repeat){
             return this.time;
         }else{
@@ -67,21 +73,21 @@ public class Task implements Cloneable{
         }
     }
 
-    public void setTime(int time){
+    public void setTime(LocalDateTime time){
         if (!this.repeat){
             this.time = time;
         }else{
             this.repeat = false;
             this.time = time;
-            this.start = 0;
-            this.end = 0;
+            this.start = null;
+            this.end = null;
             this.interval = 0;
         }
 
     }
 
     //Reading and changing execution time for repetitive tasks
-    public int getStartTime(){
+    public LocalDateTime getStartTime(){
         if(this.repeat){
             return this.start;
         }else{
@@ -89,7 +95,7 @@ public class Task implements Cloneable{
         }
     }
 
-    public int getEndTime(){
+    public LocalDateTime getEndTime(){
         if(this.repeat){
             return this.end;
         }else{
@@ -105,7 +111,7 @@ public class Task implements Cloneable{
         }
     }
 
-    public void setTime(int start, int end, int interval){
+    public void setTime(LocalDateTime start, LocalDateTime end, int interval){
         if(this.repeat){
             this.start = start;
             this.end = end;
@@ -114,7 +120,7 @@ public class Task implements Cloneable{
             this.start = start;
             this.end = end;
             this.interval = interval;
-            this.time = 0;
+            this.time = null;
             this.repeat = true;
         }
     }
@@ -125,16 +131,16 @@ public class Task implements Cloneable{
     }
 
     //Checking the next task execution
-    public int nextTimeAfter(int current){
+    public LocalDateTime nextTimeAfter(LocalDateTime current){
         if(this.repeat){
-            if(current >= this.start && interval == 0){
-                return -1;
+            if(current.isAfter(this.start) && interval == 0){
+                return null;
             }else{
                 return this.start;
             }
         }else{
-            if(current >= this.time){
-                return -1;
+            if(current.isAfter(this.time)){
+                return null;
             }else{
                 return this.time;
             }
